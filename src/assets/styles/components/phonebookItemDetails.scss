@@ -21,7 +21,7 @@
     margin: 20px auto;
   }
 
-  .user-details {  
+  .user-details {
     .detail {
       margin-bottom: 20px;
     }
@@ -38,12 +38,19 @@
     }
   }
 
+  #map {
+    left: 23%;
+    width: 40vw;
+    height: 35vh;
+  }
+
   a {
     text-decoration: none;
     color: #4c5e6c;
     border: 1px solid black;
     border-radius: 4px;
     padding: 5px;
+    display: inline-block;
 
     &:hover {
       color: #14181b;

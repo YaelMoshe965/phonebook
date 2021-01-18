@@ -34,6 +34,8 @@
         </div>
       </form>
 
+      <div id="map">{{ googleMap }}</div>
+
       <a href="#" @click="back"><i class="fa fa-arrow-left"></i> Back</a>
     </div>
   </section>
@@ -41,6 +43,7 @@
 
 <script>
 import { phonebookService } from "@/services/phonebookService.js";
+import { Loader } from "../../node_modules/@googlemaps/js-api-loader";
 
 export default {
   name: "phonebook-item-details",
@@ -50,6 +53,30 @@ export default {
       phonebookItemId: null,
       phonebookItem: null,
     };
+  },
+
+  computed: {
+    googleMap() {
+      var map;
+      var marker;
+      var lat = parseInt(this.phonebookItem.address.geo.lat);
+      var lng = parseInt(this.phonebookItem.address.geo.lng);
+
+      const loader = new Loader({
+        apiKey: "AIzaSyAI6eTKvs3KjtmmJVOdnD6LHI07G3Mo5hU",
+      });
+
+      loader.load().then(() => {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat, lng },
+          zoom: 3,
+        });
+        marker = new google.maps.Marker({
+          position: { lat, lng },
+        });
+        marker.setMap(map);
+      });
+    },
   },
 
   methods: {
